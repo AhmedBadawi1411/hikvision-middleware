@@ -14,8 +14,12 @@ cron.schedule("0 16 * * *", async () => {
         const formattedData = odooClient._buildAttendanceData(docs);
         console.log(formattedData);
         
-        await odooClient.makeCheckOut(formattedData);
-        console.log("Cache Synced successfully");
+        const syncSuccess = await odooClient.makeCheckOut(formattedData);
+        if (syncSuccess) {
+            console.log("Cache Synced successfully");
+        } else {
+            console.error("Cache Sync failed - data kept for retry");
+        }
     } catch (error) {
         console.error("Error syncing cache:", error);
     }

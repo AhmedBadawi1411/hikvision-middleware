@@ -47,26 +47,29 @@ async function makeCheckIn(payload) {
 
     try {
         const response = await axios.post(`${config.ODOO_URL}/api/attendance/import`, {
-            // jsonrpc: "2.0",
-            // params: {...payload}
             ...payload
         }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
                 'Cookie': `session_id=${odooSessionId}`,
-                // 'X-Openerp-Session-Id': odooSessionId 
             }
         });
 
-        if (response.data.error && response.data.error.data.message.includes("Session expired")) {
-            odooSessionId = null;
-            return makeCheckIn(payload);
+        if (response.data.error) {
+            if (response.data.error.data && response.data.error.data.message && response.data.error.data.message.includes("Session expired")) {
+                odooSessionId = null;
+                return makeCheckIn(payload);
+            }
+            console.error("Odoo returned error:", response.data.error);
+            return false;
         }
 
         console.log("Data synced to Odoo:", response.data.result || "Success");
+        return true;
     } catch (error) {
         console.error("Sync Error:", error.message);
+        return false;
     }
 }
 
@@ -84,14 +87,20 @@ async function makeCheckOut(payload) {
             }
         });
 
-        if (response.data.error && response.data.error.data.message.includes("Session expired")) {
-            odooSessionId = null;
-            return makeCheckOut(payload);
+        if (response.data.error) {
+            if (response.data.error.data && response.data.error.data.message && response.data.error.data.message.includes("Session expired")) {
+                odooSessionId = null;
+                return makeCheckOut(payload);
+            }
+            console.error("Odoo returned error:", response.data.error);
+            return false;
         }
 
         console.log("Check Out Data synced to Odoo:", response.data.result || "Success");
+        return true;
     } catch (error) {
         console.error("Sync Error:", error.message);
+        return false;
     }
 }
 
