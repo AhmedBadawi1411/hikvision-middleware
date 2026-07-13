@@ -1,1 +1,9 @@
 node_modules
+
+daemon
+
+events.log
+event_loop.log
+daily_summary.log
+attendance.log
+access.log
