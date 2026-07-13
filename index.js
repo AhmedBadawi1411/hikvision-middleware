@@ -191,15 +191,19 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
 
     const docs = await cache.client.findAsync({});
     const formattedData = odooClient._buildAttendanceData(docs);
-    await odooClient.makeCheckOut(formattedData);
-    await cache.client.removeAsync({}, { multi: true });
-
-    await compactDB("./database/attendence_cache.db");
-    console.log("Cache cleared successfully");
-
-    return res.status(200).json({ "STATUS": "SUCCESS", "CODE": 200, "MSG": "DATA COMPACTED AND SYNCED TO ODOO SUCCESSFULY." });
+    const syncSuccess = await odooClient.makeCheckOut(formattedData);
+    
+    if (syncSuccess) {
+      await cache.client.removeAsync({}, { multi: true });
+      await compactDB("./database/attendence_cache.db");
+      console.log("Cache cleared successfully");
+      return res.status(200).json({ "STATUS": "SUCCESS", "CODE": 200, "MSG": "DATA COMPACTED AND SYNCED TO ODOO SUCCESSFULY." });
+    } else {
+      console.error("Sync to Odoo failed - cache not cleared");
+      return res.status(500).json({ "STATUS": "FAILED", "CODE": 500, "MSG": "AN ERROR OCCURED WILL SYNC TO ODOO." });
+    }
   } catch (error) {
-    console.error("Error clearing cache:", error);
+    console.error("Error in sync process:", error);
     return res.status(500).json({ "STATUS": "FAILED", "CODE": 500, "MSG": "AN ERROR OCCURED WILL SYNC TO ODOO." });
   }
 });

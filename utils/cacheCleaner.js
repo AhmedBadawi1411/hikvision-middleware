@@ -12,11 +12,15 @@ cron.schedule("0 23 * * *", async () => {
 
         const docs = await cacheClient.client.findAsync({});
         const formattedData = odooClient._buildAttendanceData(docs);
-        await odooClient.makeCheckOut(formattedData);
-        await cacheClient.client.removeAsync({}, { multi: true });
-
-        await compactDB("./database/attendence_cache.db");
-        console.log("Cache cleared successfully");
+        const syncSuccess = await odooClient.makeCheckOut(formattedData);
+        
+        if (syncSuccess) {
+            await cacheClient.client.removeAsync({}, { multi: true });
+            await compactDB("./database/attendence_cache.db");
+            console.log("Cache cleared successfully");
+        } else {
+            console.error("Cache Sync failed - cache not cleared, data kept for retry");
+        }
     } catch (error) {
         console.error("Error clearing cache:", error);
     }
