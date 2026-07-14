@@ -1,0 +1,1880 @@
+{
+  "time": "2026-04-19T14:04:14.641Z",
+  "lag": "185ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3993MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 421000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 71200768,
+      "heapTotal": 32993280,
+      "heapUsed": 15886888,
+      "external": 4104090,
+      "arrayBuffers": 332343
+    },
+    "uptime": 5.0845924
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 291.84375,
+      "WorkingSet": 534507520
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 96.0625,
+      "WorkingSet": 282857472
+    },
+    {
+      "Name": "svchost",
+      "CPU": 61.1875,
+      "WorkingSet": 144941056
+    },
+    {
+      "Name": "Code",
+      "CPU": 56.71875,
+      "WorkingSet": 127422464
+    },
+    {
+      "Name": "dwm",
+      "CPU": 44.5625,
+      "WorkingSet": 120471552
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:04:15.241Z",
+  "lag": "729ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3991MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 421000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 71217152,
+      "heapTotal": 32993280,
+      "heapUsed": 16000536,
+      "external": 4104649,
+      "arrayBuffers": 333532
+    },
+    "uptime": 5.6848171
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 292.078125,
+      "WorkingSet": 539131904
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 96.203125,
+      "WorkingSet": 284209152
+    },
+    {
+      "Name": "svchost",
+      "CPU": 61.25,
+      "WorkingSet": 144994304
+    },
+    {
+      "Name": "Code",
+      "CPU": 56.8125,
+      "WorkingSet": 127864832
+    },
+    {
+      "Name": "dwm",
+      "CPU": 44.59375,
+      "WorkingSet": 120471552
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:04:27.263Z",
+  "lag": "104ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3987MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 468000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 63598592,
+      "heapTotal": 15953920,
+      "heapUsed": 13978736,
+      "external": 3800284,
+      "arrayBuffers": 28497
+    },
+    "uptime": 17.7068896
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 294.046875,
+      "WorkingSet": 547835904
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 96.640625,
+      "WorkingSet": 284712960
+    },
+    {
+      "Name": "svchost",
+      "CPU": 61.71875,
+      "WorkingSet": 145350656
+    },
+    {
+      "Name": "Code",
+      "CPU": 57.5,
+      "WorkingSet": 128602112
+    },
+    {
+      "Name": "dwm",
+      "CPU": 45.109375,
+      "WorkingSet": 120467456
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:04:27.891Z",
+  "lag": "408ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3987MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 468000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 63602688,
+      "heapTotal": 15953920,
+      "heapUsed": 14092184,
+      "external": 3800809,
+      "arrayBuffers": 29694
+    },
+    "uptime": 18.3345093
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 294.296875,
+      "WorkingSet": 553783296
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 96.828125,
+      "WorkingSet": 284766208
+    },
+    {
+      "Name": "svchost",
+      "CPU": 61.796875,
+      "WorkingSet": 145395712
+    },
+    {
+      "Name": "Code",
+      "CPU": 57.578125,
+      "WorkingSet": 129994752
+    },
+    {
+      "Name": "dwm",
+      "CPU": 45.15625,
+      "WorkingSet": 120467456
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:04:28.473Z",
+  "lag": "113ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3983MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 500000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 63959040,
+      "heapTotal": 15953920,
+      "heapUsed": 14175752,
+      "external": 3801331,
+      "arrayBuffers": 29544
+    },
+    "uptime": 18.916449
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 294.4375,
+      "WorkingSet": 556064768
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 96.9375,
+      "WorkingSet": 284831744
+    },
+    {
+      "Name": "svchost",
+      "CPU": 61.859375,
+      "WorkingSet": 145444864
+    },
+    {
+      "Name": "Code",
+      "CPU": 57.671875,
+      "WorkingSet": 130015232
+    },
+    {
+      "Name": "dwm",
+      "CPU": 45.171875,
+      "WorkingSet": 120467456
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:05:30.657Z",
+  "lag": "237ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4144MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 562000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64798720,
+      "heapTotal": 16216064,
+      "heapUsed": 14360448,
+      "external": 3800810,
+      "arrayBuffers": 29023
+    },
+    "uptime": 81.0992956
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 301.703125,
+      "WorkingSet": 533499904
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 97.515625,
+      "WorkingSet": 269086720
+    },
+    {
+      "Name": "svchost",
+      "CPU": 64.671875,
+      "WorkingSet": 149237760
+    },
+    {
+      "Name": "Code",
+      "CPU": 59.6875,
+      "WorkingSet": 113823744
+    },
+    {
+      "Name": "dwm",
+      "CPU": 47.265625,
+      "WorkingSet": 103206912
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:05:31.195Z",
+  "lag": "303ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4153MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 562000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64798720,
+      "heapTotal": 16216064,
+      "heapUsed": 14477288,
+      "external": 3809521,
+      "arrayBuffers": 38405
+    },
+    "uptime": 81.6370355
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 301.796875,
+      "WorkingSet": 536662016
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 97.625,
+      "WorkingSet": 270282752
+    },
+    {
+      "Name": "svchost",
+      "CPU": 64.671875,
+      "WorkingSet": 149266432
+    },
+    {
+      "Name": "Code",
+      "CPU": 59.75,
+      "WorkingSet": 115384320
+    },
+    {
+      "Name": "dwm",
+      "CPU": 47.328125,
+      "WorkingSet": 103206912
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:05:37.475Z",
+  "lag": "192ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4129MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 562000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64802816,
+      "heapTotal": 16216064,
+      "heapUsed": 14784184,
+      "external": 3810044,
+      "arrayBuffers": 38257
+    },
+    "uptime": 87.9174814
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 303.6875,
+      "WorkingSet": 550547456
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 98.265625,
+      "WorkingSet": 273657856
+    },
+    {
+      "Name": "svchost",
+      "CPU": 65.03125,
+      "WorkingSet": 149225472
+    },
+    {
+      "Name": "Code",
+      "CPU": 60.140625,
+      "WorkingSet": 128237568
+    },
+    {
+      "Name": "dwm",
+      "CPU": 47.609375,
+      "WorkingSet": 103129088
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:06:41.921Z",
+  "lag": "222ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4132MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 562000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64970752,
+      "heapTotal": 16216064,
+      "heapUsed": 14690496,
+      "external": 3808999,
+      "arrayBuffers": 37883
+    },
+    "uptime": 152.37624
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 308.671875,
+      "WorkingSet": 548184064
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 98.90625,
+      "WorkingSet": 273096704
+    },
+    {
+      "Name": "svchost",
+      "CPU": 65.75,
+      "WorkingSet": 149766144
+    },
+    {
+      "Name": "Code",
+      "CPU": 61.359375,
+      "WorkingSet": 121626624
+    },
+    {
+      "Name": "dwm",
+      "CPU": 48.140625,
+      "WorkingSet": 103129088
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:06:42.602Z",
+  "lag": "151ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4129MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 562000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64970752,
+      "heapTotal": 16216064,
+      "heapUsed": 14777648,
+      "external": 3809515,
+      "arrayBuffers": 37728
+    },
+    "uptime": 153.0440486
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 308.84375,
+      "WorkingSet": 550907904
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 99.078125,
+      "WorkingSet": 274571264
+    },
+    {
+      "Name": "svchost",
+      "CPU": 65.828125,
+      "WorkingSet": 149831680
+    },
+    {
+      "Name": "Code",
+      "CPU": 61.5,
+      "WorkingSet": 122716160
+    },
+    {
+      "Name": "dwm",
+      "CPU": 48.25,
+      "WorkingSet": 103129088
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T14:06:43.133Z",
+  "lag": "168ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4126MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 578000,
+      "system": 187000
+    },
+    "memoryUsage": {
+      "rss": 64970752,
+      "heapTotal": 16216064,
+      "heapUsed": 14919152,
+      "external": 3810036,
+      "arrayBuffers": 38920
+    },
+    "uptime": 153.5754282
+  },
+  "topProcesses": [
+    {
+      "Name": "Code",
+      "CPU": 308.953125,
+      "WorkingSet": 551145472
+    },
+    {
+      "Name": "MsMpEng",
+      "CPU": 99.203125,
+      "WorkingSet": 274612224
+    },
+    {
+      "Name": "svchost",
+      "CPU": 65.90625,
+      "WorkingSet": 149864448
+    },
+    {
+      "Name": "Code",
+      "CPU": 61.546875,
+      "WorkingSet": 122773504
+    },
+    {
+      "Name": "dwm",
+      "CPU": 48.25,
+      "WorkingSet": 103129088
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T17:10:22.579Z",
+  "lag": "580ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4265MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 19484000,
+      "system": 1000000
+    },
+    "memoryUsage": {
+      "rss": 75194368,
+      "heapTotal": 22507520,
+      "heapUsed": 20737480,
+      "external": 3957464,
+      "arrayBuffers": 185717
+    },
+    "uptime": 10167.269532
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-19T17:10:25.811Z",
+  "lag": "2987ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4038MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 19484000,
+      "system": 1000000
+    },
+    "memoryUsage": {
+      "rss": 75202560,
+      "heapTotal": 22507520,
+      "heapUsed": 21241544,
+      "external": 3957504,
+      "arrayBuffers": 185717
+    },
+    "uptime": 10170.3474683
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-19T17:10:27.682Z",
+  "lag": "2086ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3998MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 19484000,
+      "system": 1000000
+    },
+    "memoryUsage": {
+      "rss": 75280384,
+      "heapTotal": 22507520,
+      "heapUsed": 20757704,
+      "external": 3958048,
+      "arrayBuffers": 187229
+    },
+    "uptime": 10172.1942009
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 164.421875,
+      "WorkingSet": 306343936
+    },
+    {
+      "Name": "svchost",
+      "CPU": 102.109375,
+      "WorkingSet": 119951360
+    },
+    {
+      "Name": "dwm",
+      "CPU": 92.3125,
+      "WorkingSet": 181747712
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 47.0625,
+      "WorkingSet": 16003072
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 45.765625,
+      "WorkingSet": 25325568
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T17:10:28.892Z",
+  "lag": "838ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3998MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 19500000,
+      "system": 1000000
+    },
+    "memoryUsage": {
+      "rss": 75280384,
+      "heapTotal": 22507520,
+      "heapUsed": 21256448,
+      "external": 3958592,
+      "arrayBuffers": 187773
+    },
+    "uptime": 10173.4040367
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 165.15625,
+      "WorkingSet": 322633728
+    },
+    {
+      "Name": "svchost",
+      "CPU": 102.140625,
+      "WorkingSet": 120082432
+    },
+    {
+      "Name": "dwm",
+      "CPU": 92.34375,
+      "WorkingSet": 181788672
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 47.0625,
+      "WorkingSet": 16011264
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 45.765625,
+      "WorkingSet": 25329664
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-19T17:11:12.646Z",
+  "lag": "781ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "4012MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 19578000,
+      "system": 1000000
+    },
+    "memoryUsage": {
+      "rss": 75329536,
+      "heapTotal": 22769664,
+      "heapUsed": 20897352,
+      "external": 3958045,
+      "arrayBuffers": 187226
+    },
+    "uptime": 10217.1575274
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 166.59375,
+      "WorkingSet": 322953216
+    },
+    {
+      "Name": "svchost",
+      "CPU": 104.9375,
+      "WorkingSet": 122368000
+    },
+    {
+      "Name": "dwm",
+      "CPU": 93.546875,
+      "WorkingSet": 179826688
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 47.25,
+      "WorkingSet": 15994880
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 45.859375,
+      "WorkingSet": 25329664
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T09:44:41.047Z",
+  "lag": "588ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3810MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 139421000,
+      "system": 4765000
+    },
+    "memoryUsage": {
+      "rss": 86364160,
+      "heapTotal": 25915392,
+      "heapUsed": 18280824,
+      "external": 3923176,
+      "arrayBuffers": 152369
+    },
+    "uptime": 69824.512348
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T09:44:44.281Z",
+  "lag": "2747ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3670MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 139437000,
+      "system": 4765000
+    },
+    "memoryUsage": {
+      "rss": 86364160,
+      "heapTotal": 25915392,
+      "heapUsed": 17824456,
+      "external": 3923176,
+      "arrayBuffers": 152369
+    },
+    "uptime": 69827.5935516
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T09:44:46.121Z",
+  "lag": "2213ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3662MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 139437000,
+      "system": 4765000
+    },
+    "memoryUsage": {
+      "rss": 86392832,
+      "heapTotal": 25915392,
+      "heapUsed": 17311136,
+      "external": 3923738,
+      "arrayBuffers": 152931
+    },
+    "uptime": 69829.4275695
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 534.84375,
+      "WorkingSet": 341798912
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 208.9375,
+      "WorkingSet": 16007168
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 208.109375,
+      "WorkingSet": 25329664
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 177.703125,
+      "WorkingSet": 231559168
+    },
+    {
+      "Name": "svchost",
+      "CPU": 158.921875,
+      "WorkingSet": 135000064
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T09:44:47.357Z",
+  "lag": "702ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3624MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 139437000,
+      "system": 4765000
+    },
+    "memoryUsage": {
+      "rss": 86396928,
+      "heapTotal": 25915392,
+      "heapUsed": 17848296,
+      "external": 3923730,
+      "arrayBuffers": 152923
+    },
+    "uptime": 69830.663424
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 535.40625,
+      "WorkingSet": 342491136
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 208.9375,
+      "WorkingSet": 16007168
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 208.109375,
+      "WorkingSet": 25329664
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 177.71875,
+      "WorkingSet": 231559168
+    },
+    {
+      "Name": "svchost",
+      "CPU": 159,
+      "WorkingSet": 135118848
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:56:44.006Z",
+  "lag": "659ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "3123MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156218000,
+      "system": 4937000
+    },
+    "memoryUsage": {
+      "rss": 86261760,
+      "heapTotal": 25915392,
+      "heapUsed": 20037496,
+      "external": 3947752,
+      "arrayBuffers": 176945
+    },
+    "uptime": 77747.2219948
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:56:47.335Z",
+  "lag": "2630ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2963MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156218000,
+      "system": 4937000
+    },
+    "memoryUsage": {
+      "rss": 86261760,
+      "heapTotal": 25915392,
+      "heapUsed": 19592968,
+      "external": 3947752,
+      "arrayBuffers": 176945
+    },
+    "uptime": 77750.493292
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:56:49.706Z",
+  "lag": "2281ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2890MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156218000,
+      "system": 4953000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 20120072,
+      "external": 3948316,
+      "arrayBuffers": 177509
+    },
+    "uptime": 77752.8475481
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 613.828125,
+      "WorkingSet": 352464896
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 232.828125,
+      "WorkingSet": 16031744
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 231.796875,
+      "WorkingSet": 25350144
+    },
+    {
+      "Name": "svchost",
+      "CPU": 198.453125,
+      "WorkingSet": 104288256
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 194.96875,
+      "WorkingSet": 231694336
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:56:51.276Z",
+  "lag": "1309ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2874MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156218000,
+      "system": 4953000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 19602736,
+      "external": 3948317,
+      "arrayBuffers": 177510
+    },
+    "uptime": 77754.4164532
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 614.390625,
+      "WorkingSet": 353660928
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 232.828125,
+      "WorkingSet": 16039936
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 231.796875,
+      "WorkingSet": 25358336
+    },
+    {
+      "Name": "svchost",
+      "CPU": 198.765625,
+      "WorkingSet": 106164224
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 194.984375,
+      "WorkingSet": 231694336
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:56:52.733Z",
+  "lag": "570ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2878MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156218000,
+      "system": 4968000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 19095952,
+      "external": 3948306,
+      "arrayBuffers": 177499
+    },
+    "uptime": 77755.8732966
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 614.84375,
+      "WorkingSet": 359849984
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 232.828125,
+      "WorkingSet": 16039936
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 231.8125,
+      "WorkingSet": 25358336
+    },
+    {
+      "Name": "svchost",
+      "CPU": 199.03125,
+      "WorkingSet": 107298816
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 195,
+      "WorkingSet": 231694336
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:58:12.445Z",
+  "lag": "1555ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2977MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156328000,
+      "system": 4968000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 19201640,
+      "external": 3948309,
+      "arrayBuffers": 176522
+    },
+    "uptime": 77835.5831262
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 615.828125,
+      "WorkingSet": 353239040
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 233.125,
+      "WorkingSet": 15953920
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 232.15625,
+      "WorkingSet": 25358336
+    },
+    {
+      "Name": "svchost",
+      "CPU": 200.625,
+      "WorkingSet": 110047232
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 195.21875,
+      "WorkingSet": 231694336
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:58:46.846Z",
+  "lag": "521ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2804MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156406000,
+      "system": 4968000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 20068064,
+      "external": 3948314,
+      "arrayBuffers": 177507
+    },
+    "uptime": 77869.9842721
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 616.734375,
+      "WorkingSet": 353542144
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 233.234375,
+      "WorkingSet": 15962112
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 232.3125,
+      "WorkingSet": 25358336
+    },
+    {
+      "Name": "svchost",
+      "CPU": 202.203125,
+      "WorkingSet": 157179904
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 195.28125,
+      "WorkingSet": 231600128
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T11:58:47.664Z",
+  "lag": "1644ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2822MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 156406000,
+      "system": 4968000
+    },
+    "memoryUsage": {
+      "rss": 86294528,
+      "heapTotal": 25915392,
+      "heapUsed": 19653928,
+      "external": 3948316,
+      "arrayBuffers": 177509
+    },
+    "uptime": 77870.8020586
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 616.890625,
+      "WorkingSet": 356073472
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 233.234375,
+      "WorkingSet": 15962112
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 232.328125,
+      "WorkingSet": 25358336
+    },
+    {
+      "Name": "svchost",
+      "CPU": 202.359375,
+      "WorkingSet": 158875648
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 195.28125,
+      "WorkingSet": 231600128
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:33:10.990Z",
+  "lag": "854ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2862MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 216234000,
+      "system": 5578000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17304824,
+      "external": 3792968,
+      "arrayBuffers": 27977
+    },
+    "uptime": 105133.5960145
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:33:12.841Z",
+  "lag": "2059ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2786MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 216234000,
+      "system": 5578000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17841984,
+      "external": 3793527,
+      "arrayBuffers": 28536
+    },
+    "uptime": 105135.4296482
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 764.15625,
+      "WorkingSet": 272474112
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 328.96875,
+      "WorkingSet": 16052224
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 328.703125,
+      "WorkingSet": 25370624
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 259.0625,
+      "WorkingSet": 231981056
+    },
+    {
+      "Name": "svchost",
+      "CPU": 251.8125,
+      "WorkingSet": 103833600
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:33:14.871Z",
+  "lag": "838ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2769MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 216234000,
+      "system": 5593000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17368096,
+      "external": 3793529,
+      "arrayBuffers": 29505
+    },
+    "uptime": 105137.4602916
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 764.78125,
+      "WorkingSet": 283537408
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 328.984375,
+      "WorkingSet": 16056320
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 328.71875,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 259.0625,
+      "WorkingSet": 231981056
+    },
+    {
+      "Name": "svchost",
+      "CPU": 252.234375,
+      "WorkingSet": 106405888
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:33:16.025Z",
+  "lag": "1028ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2765MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 216234000,
+      "system": 5593000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17902432,
+      "external": 3794091,
+      "arrayBuffers": 30067
+    },
+    "uptime": 105138.6142203
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 765.09375,
+      "WorkingSet": 290570240
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 328.984375,
+      "WorkingSet": 16056320
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 328.71875,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 259.078125,
+      "WorkingSet": 231981056
+    },
+    {
+      "Name": "svchost",
+      "CPU": 252.28125,
+      "WorkingSet": 106913792
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:43:26.786Z",
+  "lag": "1075ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2578MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 217578000,
+      "system": 5609000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17431352,
+      "external": 3792968,
+      "arrayBuffers": 27977
+    },
+    "uptime": 105749.3821502
+  },
+  "topProcesses": [
+    "Could not fetch processes: spawnSync C:\\Windows\\system32\\cmd.exe ETIMEDOUT"
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:43:28.660Z",
+  "lag": "2535ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2532MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 217593000,
+      "system": 5609000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17963928,
+      "external": 3793532,
+      "arrayBuffers": 28541
+    },
+    "uptime": 105751.2356194
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 769.328125,
+      "WorkingSet": 271417344
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 331.453125,
+      "WorkingSet": 16035840
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 331.265625,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "svchost",
+      "CPU": 267.015625,
+      "WorkingSet": 122994688
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 260.46875,
+      "WorkingSet": 231989248
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:43:29.731Z",
+  "lag": "837ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2526MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 217593000,
+      "system": 5609000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17505176,
+      "external": 3793528,
+      "arrayBuffers": 29504
+    },
+    "uptime": 105752.3073071
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 769.9375,
+      "WorkingSet": 273108992
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 331.46875,
+      "WorkingSet": 16039936
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 331.265625,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "svchost",
+      "CPU": 267.09375,
+      "WorkingSet": 123076608
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 260.46875,
+      "WorkingSet": 231989248
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:43:35.710Z",
+  "lag": "652ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2355MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 217593000,
+      "system": 5625000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 18361344,
+      "external": 3793531,
+      "arrayBuffers": 29507
+    },
+    "uptime": 105758.2869138
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 772.296875,
+      "WorkingSet": 273543168
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 331.46875,
+      "WorkingSet": 16044032
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 331.296875,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "svchost",
+      "CPU": 267.828125,
+      "WorkingSet": 123113472
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 260.53125,
+      "WorkingSet": 231989248
+    }
+  ]
+}
+---
+{
+  "time": "2026-04-20T19:43:36.937Z",
+  "lag": "1310ms",
+  "system": {
+    "loadAverage": [
+      0,
+      0,
+      0
+    ],
+    "freeMem": "2349MB",
+    "totalMem": "8191MB",
+    "cpuCount": 2
+  },
+  "process": {
+    "cpuUsage": {
+      "user": 217593000,
+      "system": 5625000
+    },
+    "memoryUsage": {
+      "rss": 86863872,
+      "heapTotal": 26177536,
+      "heapUsed": 17854920,
+      "external": 3793523,
+      "arrayBuffers": 29499
+    },
+    "uptime": 105759.5128375
+  },
+  "topProcesses": [
+    {
+      "Name": "MsMpEng",
+      "CPU": 772.53125,
+      "WorkingSet": 274395136
+    },
+    {
+      "Name": "DecodeProcess",
+      "CPU": 331.46875,
+      "WorkingSet": 16048128
+    },
+    {
+      "Name": "ThirdDecodeProcess",
+      "CPU": 331.296875,
+      "WorkingSet": 25374720
+    },
+    {
+      "Name": "svchost",
+      "CPU": 268,
+      "WorkingSet": 123121664
+    },
+    {
+      "Name": "PlayControlClient",
+      "CPU": 260.53125,
+      "WorkingSet": 231989248
+    }
+  ]
+}
+---
