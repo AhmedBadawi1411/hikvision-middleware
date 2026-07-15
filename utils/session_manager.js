@@ -1,8 +1,12 @@
 const { default: axios } = require("axios")
 const { config } = require("../config/config.js")
-const asyncHandler = require("./asyncHandler.js")
 
 let odooSessionId = null;
+
+const SUCCESS_STATUSES = new Set([
+    "check_in_created",
+    "check_out_updated",
+]);
 
 async function loginToOdoo() {
     try {
@@ -40,6 +44,27 @@ async function loginToOdoo() {
     }
 }
 
+function _parseSyncResult(result) {
+    const rows = Array.isArray(result?.data) ? result.data : [];
+    const succeededDeviceIds = [];
+    const failed = [];
+
+    for (const row of rows) {
+        const deviceId = row?.device_id;
+        const status = row?.status;
+        if (!deviceId) {
+            continue;
+        }
+        if (SUCCESS_STATUSES.has(status)) {
+            succeededDeviceIds.push(String(deviceId));
+        } else {
+            failed.push({ device_id: String(deviceId), status: status || "unknown" });
+        }
+    }
+
+    return { succeededDeviceIds, failed, rows };
+}
+
 async function makeCheckIn(payload) {
     if (!odooSessionId) await loginToOdoo();
 
@@ -62,14 +87,19 @@ async function makeCheckIn(payload) {
                 return makeCheckIn(payload);
             }
             console.error("Odoo returned error:", response.data.error);
-            return false;
+            return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
         }
 
-        console.log("Data synced to Odoo:", response.data.result || "Success");
-        return true;
+        const parsed = _parseSyncResult(response.data.result);
+        if (parsed.failed.length) {
+            console.warn("Check-in soft failures:", parsed.failed);
+        } else {
+            console.log("Data synced to Odoo:", response.data.result || "Success");
+        }
+        return { ok: true, ...parsed };
     } catch (error) {
         console.error("Sync Error:", error.message);
-        return false;
+        return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
     }
 }
 
@@ -93,15 +123,31 @@ async function makeCheckOut(payload) {
                 return makeCheckOut(payload);
             }
             console.error("Odoo returned error:", response.data.error);
-            return false;
+            return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
         }
 
+        const parsed = _parseSyncResult(response.data.result);
         console.log("Check Out Data synced to Odoo:", response.data.result || "Success");
-        return true;
+        if (parsed.failed.length) {
+            console.warn("Per-employee sync failures (kept in cache):", parsed.failed);
+        }
+        return { ok: true, ...parsed };
     } catch (error) {
         console.error("Sync Error:", error.message);
-        return false;
+        return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
     }
+}
+
+async function removeSuccessfulFromCache(cacheClient, succeededDeviceIds) {
+    let removed = 0;
+    for (const deviceId of succeededDeviceIds) {
+        const count = await cacheClient.removeAsync(
+            { empId: String(deviceId) },
+            { multi: true }
+        );
+        removed += count || 0;
+    }
+    return removed;
 }
 
 function _buildOdooPayload(payload) {
@@ -128,4 +174,11 @@ function _buildAttendanceData(docs) {
 
     return formattedData || {}
 }
-module.exports = { makeCheckIn, _buildAttendanceData, makeCheckOut }
+
+module.exports = {
+    makeCheckIn,
+    makeCheckOut,
+    _buildAttendanceData,
+    removeSuccessfulFromCache,
+    SUCCESS_STATUSES,
+}

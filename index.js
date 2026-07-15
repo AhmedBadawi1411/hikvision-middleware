@@ -190,18 +190,45 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
     console.log("Compact done");
 
     const docs = await cache.client.findAsync({});
+    if (!docs.length) {
+      return res.status(200).json({
+        "STATUS": "SUCCESS",
+        "CODE": 200,
+        "MSG": "NO CACHE DATA TO SYNC.",
+        "synced": 0,
+        "failed": 0,
+      });
+    }
+
     const formattedData = odooClient._buildAttendanceData(docs);
-    const syncSuccess = await odooClient.makeCheckOut(formattedData);
-    
-    if (syncSuccess) {
-      await cache.client.removeAsync({}, { multi: true });
-      await compactDB("./database/attendence_cache.db");
-      console.log("Cache cleared successfully");
-      return res.status(200).json({ "STATUS": "SUCCESS", "CODE": 200, "MSG": "DATA COMPACTED AND SYNCED TO ODOO SUCCESSFULY." });
-    } else {
+    const syncResult = await odooClient.makeCheckOut(formattedData);
+
+    if (!syncResult.ok) {
       console.error("Sync to Odoo failed - cache not cleared");
       return res.status(500).json({ "STATUS": "FAILED", "CODE": 500, "MSG": "AN ERROR OCCURED WILL SYNC TO ODOO." });
     }
+
+    const removed = await odooClient.removeSuccessfulFromCache(
+      cache.client,
+      syncResult.succeededDeviceIds
+    );
+    await compactDB("./database/attendence_cache.db");
+
+    console.log(
+      `Selective cache clear: removed=${removed}, succeeded=${syncResult.succeededDeviceIds.length}, failed=${syncResult.failed.length}`
+    );
+
+    const hasFailures = syncResult.failed.length > 0;
+    return res.status(200).json({
+      "STATUS": hasFailures ? "PARTIAL_SUCCESS" : "SUCCESS",
+      "CODE": 200,
+      "MSG": hasFailures
+        ? "SYNCED SUCCESSFUL EMPLOYEES; FAILED EMPLOYEES KEPT IN CACHE."
+        : "DATA COMPACTED AND SYNCED TO ODOO SUCCESSFULY.",
+      "synced": syncResult.succeededDeviceIds.length,
+      "failed": syncResult.failed.length,
+      "failures": syncResult.failed,
+    });
   } catch (error) {
     console.error("Error in sync process:", error);
     return res.status(500).json({ "STATUS": "FAILED", "CODE": 500, "MSG": "AN ERROR OCCURED WILL SYNC TO ODOO." });
