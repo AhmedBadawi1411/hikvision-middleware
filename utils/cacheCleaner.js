@@ -26,7 +26,8 @@ cron.schedule("0 23 * * *", async () => {
 
         const removed = await odooClient.removeSuccessfulFromCache(
             cacheClient.client,
-            syncResult.succeededDeviceIds
+            syncResult.succeededDeviceIds,
+            formattedData
         );
         await compactDB("./database/attendence_cache.db");
         console.log(

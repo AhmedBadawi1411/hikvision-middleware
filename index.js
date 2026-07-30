@@ -263,9 +263,11 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
       return res.status(500).json({ "STATUS": "FAILED", "CODE": 500, "MSG": "AN ERROR OCCURED WILL SYNC TO ODOO." });
     }
 
+    // Selective clear only: never wipe the whole DB on HTTP 200
     const removed = await odooClient.removeSuccessfulFromCache(
       cache.client,
-      syncResult.succeededDeviceIds
+      syncResult.succeededDeviceIds,
+      formattedData
     );
     await compactDB("./database/attendence_cache.db");
 

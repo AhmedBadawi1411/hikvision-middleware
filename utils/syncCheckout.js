@@ -25,8 +25,15 @@ cron.schedule("0 16 * * *", async () => {
             return;
         }
 
+        const removed = await odooClient.removeSuccessfulFromCache(
+            cacheClient.client,
+            syncResult.succeededDeviceIds,
+            formattedData
+        );
+        await compactDB("./database/attendence_cache.db");
+
         console.log(
-            `Cache Synced: succeeded=${syncResult.succeededDeviceIds.length}, failed=${syncResult.failed.length}`
+            `Cache Synced: removed=${removed}, succeeded=${syncResult.succeededDeviceIds.length}, failed=${syncResult.failed.length}`
         );
         if (syncResult.failed.length) {
             console.warn("Per-employee sync failures:", syncResult.failed);

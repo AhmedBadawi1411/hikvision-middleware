@@ -3,15 +3,13 @@ const { config } = require("../config/config.js")
 
 let odooSessionId = null;
 
-// Statuses that mean checkout reached Odoo — safe to drop cache for that employee.
-// Do NOT include check_in_created: morning-only sync must keep the row so later
-// lastSeen (checkout) can still be sent at end of day.
+// Checkout confirmed in Odoo → safe to remove that employee day from cache.
+// Do NOT clear on check_in_created: morning-only sync must keep the row for later lastSeen.
 const CACHE_CLEAR_STATUSES = new Set([
     "check_in_and_checkout_created",
     "check_out_updated",
 ]);
 
-// Soft success / informational — keep in cache for a later checkout sync.
 const CACHE_KEEP_STATUSES = new Set([
     "check_in_created",
 ]);
@@ -50,6 +48,10 @@ async function loginToOdoo() {
     } catch (error) {
         console.error("Odoo Login Failed:", error.message);
     }
+}
+
+function _emptySyncResult() {
+    return { ok: false, succeededDeviceIds: [], keptDeviceIds: [], failed: [], rows: [] };
 }
 
 function _parseSyncResult(result) {
@@ -98,7 +100,7 @@ async function makeCheckIn(payload) {
                 return makeCheckIn(payload);
             }
             console.error("Odoo returned error:", response.data.error);
-            return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
+            return _emptySyncResult();
         }
 
         const parsed = _parseSyncResult(response.data.result);
@@ -116,7 +118,7 @@ async function makeCheckIn(payload) {
         return { ok: true, ...parsed };
     } catch (error) {
         console.error("Sync Error:", error.message);
-        return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
+        return _emptySyncResult();
     }
 }
 
@@ -140,7 +142,7 @@ async function makeCheckOut(payload) {
                 return makeCheckOut(payload);
             }
             console.error("Odoo returned error:", response.data.error);
-            return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
+            return _emptySyncResult();
         }
 
         const parsed = _parseSyncResult(response.data.result);
@@ -157,17 +159,23 @@ async function makeCheckOut(payload) {
         return { ok: true, ...parsed };
     } catch (error) {
         console.error("Sync Error:", error.message);
-        return { ok: false, succeededDeviceIds: [], failed: [], rows: [] };
+        return _emptySyncResult();
     }
 }
 
-async function removeSuccessfulFromCache(cacheClient, succeededDeviceIds) {
+/**
+ * Remove only employees whose checkout sync succeeded.
+ * If syncedPayload has date, limit delete to that day (keeps other days for retry).
+ */
+async function removeSuccessfulFromCache(cacheClient, succeededDeviceIds, syncedPayload = null) {
     let removed = 0;
     for (const deviceId of succeededDeviceIds) {
-        const count = await cacheClient.removeAsync(
-            { empId: String(deviceId) },
-            { multi: true }
-        );
+        const query = { empId: String(deviceId) };
+        const row = syncedPayload && syncedPayload[deviceId];
+        if (row && row.date) {
+            query.date = row.date;
+        }
+        const count = await cacheClient.removeAsync(query, { multi: true });
         removed += count || 0;
     }
     return removed;
@@ -190,57 +198,102 @@ function _punchTs(value) {
     return Number.isNaN(ts) ? null : ts;
 }
 
+function _toRow(doc) {
+    return {
+        empId: doc.empId,
+        name: doc.name,
+        firstIn: doc.firstIn,
+        lastSeen: doc.lastSeen || doc.firstIn,
+        date: doc.date,
+        deviceMac: doc.deviceMac || "",
+        deviceIp: doc.deviceIp || "",
+    };
+}
+
+/**
+ * Merge two cache docs for the SAME employee + SAME day:
+ * firstIn = earliest punch, lastSeen = latest punch.
+ */
+function _mergeSameDay(a, b) {
+    const merged = { ...a };
+
+    const aFirst = _punchTs(a.firstIn);
+    const bFirst = _punchTs(b.firstIn);
+    if (bFirst !== null && (aFirst === null || bFirst < aFirst)) {
+        merged.firstIn = b.firstIn;
+    }
+
+    const aLast = _punchTs(a.lastSeen || a.firstIn);
+    const bLast = _punchTs(b.lastSeen || b.firstIn);
+    if (bLast !== null && (aLast === null || bLast > aLast)) {
+        merged.lastSeen = b.lastSeen || b.firstIn;
+        if (b.deviceMac) {
+            merged.deviceMac = b.deviceMac;
+        }
+        if (b.deviceIp) {
+            merged.deviceIp = b.deviceIp;
+        }
+    }
+
+    if (b.name) {
+        merged.name = b.name;
+    }
+    return merged;
+}
+
 /**
  * Build one Odoo row per empId.
- * If multiple NeDB docs exist for the same employee (e.g. legacy
- * empId+deviceMac+date rows), merge: earliest firstIn + latest lastSeen.
+ * 1) Merge all NeDB docs for the same empId + date (fixes multi-device duplicates).
+ * 2) If multiple days exist for one empId, prefer the day with the latest lastSeen
+ *    so we never mix punches from different days into one row.
  */
 function _buildAttendanceData(docs) {
-    const formattedData = {};
+    const byEmpDay = {};
 
     for (const curr of docs || []) {
         const empId = curr?.empId;
         if (!empId) {
             continue;
         }
+        const day = curr.date || "";
+        const key = `${empId}||${day}`;
+        const row = _toRow(curr);
 
+        if (!byEmpDay[key]) {
+            byEmpDay[key] = row;
+        } else {
+            byEmpDay[key] = _mergeSameDay(byEmpDay[key], row);
+        }
+    }
+
+    const formattedData = {};
+    for (const merged of Object.values(byEmpDay)) {
+        const empId = merged.empId;
         const existing = formattedData[empId];
         if (!existing) {
             formattedData[empId] = {
-                name: curr.name,
-                firstIn: curr.firstIn,
-                lastSeen: curr.lastSeen || curr.firstIn,
-                date: curr.date,
-                deviceMac: curr.deviceMac || "",
-                deviceIp: curr.deviceIp || "",
+                name: merged.name,
+                firstIn: merged.firstIn,
+                lastSeen: merged.lastSeen,
+                date: merged.date,
+                deviceMac: merged.deviceMac || "",
+                deviceIp: merged.deviceIp || "",
             };
             continue;
         }
 
-        const currFirstTs = _punchTs(curr.firstIn);
-        const existFirstTs = _punchTs(existing.firstIn);
-        if (currFirstTs !== null && (existFirstTs === null || currFirstTs < existFirstTs)) {
-            existing.firstIn = curr.firstIn;
-            if (curr.date) {
-                existing.date = curr.date;
-            }
-        }
-
-        const currLastTs = _punchTs(curr.lastSeen || curr.firstIn);
-        const existLastTs = _punchTs(existing.lastSeen || existing.firstIn);
-        if (currLastTs !== null && (existLastTs === null || currLastTs > existLastTs)) {
-            existing.lastSeen = curr.lastSeen || curr.firstIn;
-            // Prefer MAC/IP from the latest punch device
-            if (curr.deviceMac) {
-                existing.deviceMac = curr.deviceMac;
-            }
-            if (curr.deviceIp) {
-                existing.deviceIp = curr.deviceIp;
-            }
-        }
-
-        if (curr.name) {
-            existing.name = curr.name;
+        // Different calendar days for same empId: keep the day with latest lastSeen
+        const existLast = _punchTs(existing.lastSeen || existing.firstIn);
+        const mergedLast = _punchTs(merged.lastSeen || merged.firstIn);
+        if (mergedLast !== null && (existLast === null || mergedLast >= existLast)) {
+            formattedData[empId] = {
+                name: merged.name,
+                firstIn: merged.firstIn,
+                lastSeen: merged.lastSeen,
+                date: merged.date,
+                deviceMac: merged.deviceMac || "",
+                deviceIp: merged.deviceIp || "",
+            };
         }
     }
 
