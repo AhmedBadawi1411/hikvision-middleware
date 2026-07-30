@@ -99,11 +99,25 @@ app.post("/hikvision/event", upload.any(), async (req, res) => {
         f.mimetype === 'image/jpeg'
       );
 
-      const empDoc = await cache.client.findOneAsync({
+      // Cache key = empId + date (NOT deviceMac).
+      // Same employee punching in/out on different doors must update one day record.
+      const empDocs = await cache.client.findAsync({
         empId: empId,
-        deviceMac: deviceMac,
         date: today
       });
+      const empDoc = empDocs.length
+        ? empDocs.reduce((best, doc) => {
+            const bestTs = Date.parse(best.firstIn);
+            const docTs = Date.parse(doc.firstIn);
+            if (Number.isNaN(docTs)) {
+              return best;
+            }
+            if (Number.isNaN(bestTs) || docTs < bestTs) {
+              return doc;
+            }
+            return best;
+          })
+        : null;
 
       console.log(`-----------------------------------`);
       console.log(`[Authenticated]: ${personName}`);
@@ -138,9 +152,20 @@ app.post("/hikvision/event", upload.any(), async (req, res) => {
 
       } else {
 
+        // Keep the latest punch time; never move lastSeen backwards.
+        const prevLastTs = Date.parse(empDoc.lastSeen || empDoc.firstIn);
+        const nextTs = Date.parse(deviceTime);
+        const lastSeenValue =
+          Number.isNaN(nextTs) || Number.isNaN(prevLastTs) || nextTs >= prevLastTs
+            ? deviceTime
+            : empDoc.lastSeen;
+
         await cache.client.updateAsync({ _id: empDoc._id }, {
           $set: {
-            lastSeen: deviceTime
+            lastSeen: lastSeenValue,
+            // Track last device used (does not change the cache lookup key)
+            deviceMac: deviceMac || empDoc.deviceMac,
+            deviceIp: deviceIp || empDoc.deviceIp,
           }
         });
         console.log(`[UPDATE LAST]: ${personName} (ID: ${empId})`);
@@ -189,7 +214,35 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
     await compactDB("./database/attendence_cache.db");
     console.log("Compact done");
 
-    const docs = await cache.client.findAsync({});
+    let docs = await cache.client.findAsync({});
+    const dateFrom = req.query.dateFrom || req.query.date_from;
+    const dateTo = req.query.dateTo || req.query.date_to;
+
+    if (dateFrom || dateTo) {
+      const fromTs = dateFrom ? Date.parse(`${dateFrom}T00:00:00`) : null;
+      const toTs = dateTo ? Date.parse(`${dateTo}T23:59:59.999`) : null;
+      docs = docs.filter((doc) => {
+        const punch = doc.firstIn || doc.lastSeen;
+        if (!punch) {
+          return false;
+        }
+        const punchTs = Date.parse(punch);
+        if (Number.isNaN(punchTs)) {
+          return false;
+        }
+        if (fromTs !== null && !Number.isNaN(fromTs) && punchTs < fromTs) {
+          return false;
+        }
+        if (toTs !== null && !Number.isNaN(toTs) && punchTs > toTs) {
+          return false;
+        }
+        return true;
+      });
+      console.log(
+        `Filtered cache by date range dateFrom=${dateFrom || "-"} dateTo=${dateTo || "-"} -> ${docs.length} docs`
+      );
+    }
+
     if (!docs.length) {
       return res.status(200).json({
         "STATUS": "SUCCESS",
@@ -197,6 +250,8 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
         "MSG": "NO CACHE DATA TO SYNC.",
         "synced": 0,
         "failed": 0,
+        "dateFrom": dateFrom || null,
+        "dateTo": dateTo || null,
       });
     }
 
@@ -228,6 +283,8 @@ app.get("/api/v1/getAttendenceData", async (req, res) => {
       "synced": syncResult.succeededDeviceIds.length,
       "failed": syncResult.failed.length,
       "failures": syncResult.failed,
+      "dateFrom": dateFrom || null,
+      "dateTo": dateTo || null,
     });
   } catch (error) {
     console.error("Error in sync process:", error);

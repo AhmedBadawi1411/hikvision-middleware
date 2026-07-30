@@ -3,9 +3,17 @@ const { config } = require("../config/config.js")
 
 let odooSessionId = null;
 
-const SUCCESS_STATUSES = new Set([
-    "check_in_created",
+// Statuses that mean checkout reached Odoo — safe to drop cache for that employee.
+// Do NOT include check_in_created: morning-only sync must keep the row so later
+// lastSeen (checkout) can still be sent at end of day.
+const CACHE_CLEAR_STATUSES = new Set([
+    "check_in_and_checkout_created",
     "check_out_updated",
+]);
+
+// Soft success / informational — keep in cache for a later checkout sync.
+const CACHE_KEEP_STATUSES = new Set([
+    "check_in_created",
 ]);
 
 async function loginToOdoo() {
@@ -47,6 +55,7 @@ async function loginToOdoo() {
 function _parseSyncResult(result) {
     const rows = Array.isArray(result?.data) ? result.data : [];
     const succeededDeviceIds = [];
+    const keptDeviceIds = [];
     const failed = [];
 
     for (const row of rows) {
@@ -55,14 +64,16 @@ function _parseSyncResult(result) {
         if (!deviceId) {
             continue;
         }
-        if (SUCCESS_STATUSES.has(status)) {
+        if (CACHE_CLEAR_STATUSES.has(status)) {
             succeededDeviceIds.push(String(deviceId));
+        } else if (CACHE_KEEP_STATUSES.has(status)) {
+            keptDeviceIds.push(String(deviceId));
         } else {
             failed.push({ device_id: String(deviceId), status: status || "unknown" });
         }
     }
 
-    return { succeededDeviceIds, failed, rows };
+    return { succeededDeviceIds, keptDeviceIds, failed, rows };
 }
 
 async function makeCheckIn(payload) {
@@ -91,9 +102,15 @@ async function makeCheckIn(payload) {
         }
 
         const parsed = _parseSyncResult(response.data.result);
+        if (parsed.keptDeviceIds.length) {
+            console.log(
+                "Check-in created in Odoo; cache kept for later checkout:",
+                parsed.keptDeviceIds
+            );
+        }
         if (parsed.failed.length) {
             console.warn("Check-in soft failures:", parsed.failed);
-        } else {
+        } else if (!parsed.keptDeviceIds.length) {
             console.log("Data synced to Odoo:", response.data.result || "Success");
         }
         return { ok: true, ...parsed };
@@ -128,6 +145,12 @@ async function makeCheckOut(payload) {
 
         const parsed = _parseSyncResult(response.data.result);
         console.log("Check Out Data synced to Odoo:", response.data.result || "Success");
+        if (parsed.keptDeviceIds.length) {
+            console.log(
+                "Check-in-only responses; cache kept for later checkout:",
+                parsed.keptDeviceIds
+            );
+        }
         if (parsed.failed.length) {
             console.warn("Per-employee sync failures (kept in cache):", parsed.failed);
         }
@@ -159,20 +182,69 @@ function _buildOdooPayload(payload) {
     return payload;
 }
 
-function _buildAttendanceData(docs) {
-    const formattedData = docs.reduce((acc, curr) => {
-        acc[curr.empId] = {
-            name: curr.name,
-            firstIn: curr.firstIn,
-            lastSeen: curr.lastSeen,
-            date: curr.date,
-            deviceMac: curr.deviceMac || "",
-            deviceIp: curr.deviceIp || "",
-        };
-        return acc;
-    }, {});
+function _punchTs(value) {
+    if (!value) {
+        return null;
+    }
+    const ts = Date.parse(value);
+    return Number.isNaN(ts) ? null : ts;
+}
 
-    return formattedData || {}
+/**
+ * Build one Odoo row per empId.
+ * If multiple NeDB docs exist for the same employee (e.g. legacy
+ * empId+deviceMac+date rows), merge: earliest firstIn + latest lastSeen.
+ */
+function _buildAttendanceData(docs) {
+    const formattedData = {};
+
+    for (const curr of docs || []) {
+        const empId = curr?.empId;
+        if (!empId) {
+            continue;
+        }
+
+        const existing = formattedData[empId];
+        if (!existing) {
+            formattedData[empId] = {
+                name: curr.name,
+                firstIn: curr.firstIn,
+                lastSeen: curr.lastSeen || curr.firstIn,
+                date: curr.date,
+                deviceMac: curr.deviceMac || "",
+                deviceIp: curr.deviceIp || "",
+            };
+            continue;
+        }
+
+        const currFirstTs = _punchTs(curr.firstIn);
+        const existFirstTs = _punchTs(existing.firstIn);
+        if (currFirstTs !== null && (existFirstTs === null || currFirstTs < existFirstTs)) {
+            existing.firstIn = curr.firstIn;
+            if (curr.date) {
+                existing.date = curr.date;
+            }
+        }
+
+        const currLastTs = _punchTs(curr.lastSeen || curr.firstIn);
+        const existLastTs = _punchTs(existing.lastSeen || existing.firstIn);
+        if (currLastTs !== null && (existLastTs === null || currLastTs > existLastTs)) {
+            existing.lastSeen = curr.lastSeen || curr.firstIn;
+            // Prefer MAC/IP from the latest punch device
+            if (curr.deviceMac) {
+                existing.deviceMac = curr.deviceMac;
+            }
+            if (curr.deviceIp) {
+                existing.deviceIp = curr.deviceIp;
+            }
+        }
+
+        if (curr.name) {
+            existing.name = curr.name;
+        }
+    }
+
+    return formattedData;
 }
 
 module.exports = {
@@ -180,5 +252,6 @@ module.exports = {
     makeCheckOut,
     _buildAttendanceData,
     removeSuccessfulFromCache,
-    SUCCESS_STATUSES,
+    CACHE_CLEAR_STATUSES,
+    CACHE_KEEP_STATUSES,
 }
